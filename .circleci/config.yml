@@ -1,0 +1,56 @@
+version: 2
+jobs:
+  install:
+    docker:
+      - image: circleci/python:3.7.0
+    working_directory: ~/Project
+    steps:
+      - checkout
+      - run:
+          name: Actualizamos los paquetes a traves de apt
+          command: sudo apt-get update
+      - run:
+          name: Creamos el entorno virtual en la carpeta actual
+          command: python3 -m venv env
+      - run:
+          name: Anadimos el interprete del entorno virtual al PATH
+          command: export PATH=$PATH:$(pwd)/env/bin
+      - persist_to_workspace:
+        root: .
+        paths:
+          - GithubProject
+          - env
+
+
+  test-pep8:
+    docker:
+      - image: circleci/circleci/python:3.7.0
+    working_directory: ~/Project
+    steps:
+      - checkout
+      - attach_workspace:
+          at: .
+      - run:
+          name: Test de estilo PEP8
+          command: echo Instalar checker de estilo y ejecutarlo
+
+  analisis-estatico:
+    docker:
+      - image: circleci/circleci/python:3.7.0
+    working_directory: ~/repo
+    steps:
+      - checkout
+      - attach_workspace:
+          at: .
+      - run:
+          name: Test
+
+  tests-unitarios:
+
+workflows:
+  version: 2
+  jobs:
+    - install
+    - test-pep8:
+        requires:
+          - install
