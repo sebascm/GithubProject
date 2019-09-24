@@ -31,3 +31,34 @@ general mientras que la documentación específica de cada parte se incluirá en
 directorio correspondiente. Debe ser breve, concisa e indicar mediante enlaces las referencias de dónde se ha obtenido
 la información o a la ampliación de la información presente (documentación de referencia de las APIs utilizadas).
 
+
+## Guías de estilo
+
+Para una mayor cohesión de los cambios introducidos por los diferentes desarrolladores se definen unas guías de estilo
+para todos ellos. En este documento se especifican las guías de estilo para los lenguajes en uso:
+
+- Python: [PEP8](https://www.python.org/dev/peps/pep-0008/)
+- Markdown: [Markdown Github Flavored](https://help.github.com/en/articles/about-writing-and-formatting-on-github) 
+
+Para el resto se aplican algunas consideraciones generales:
+
+- Tamaño de linea máximo: 80 caracteres
+- Tamaño de indentación: 2 espacios
+- Los bloques de código lógicos deben de ir separados por un espacios
+
+Para los _commits_  en **git**, se aplicará el siguiente:
+
+- Obligatorio
+	- Una primera linea a modo de resumen de 50 caracteres máximo
+- Opcional
+	- Un parágrafo breve, separado por un salto de línea, dónde se detallen aspectos del _commit_que el desarrollador
+    considere necesarios. El tamaño de linea máximo para estos parágrafos es de 72 lineas.
+	- Una serie de parágrafos que detallen determinados cambios en sitios concretos y que el desarrollador considere
+    necesario mencionar.
+		
+Se puede obtener más información en la página de [Chris Beams](https://chris.beams.io/posts/git-commit/).
+
+
+
+
+
