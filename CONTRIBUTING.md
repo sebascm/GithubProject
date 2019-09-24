@@ -58,7 +58,6 @@ Para los _commits_  en **git**, se aplicará el siguiente:
 		
 Se puede obtener más información en la página de [Chris Beams](https://chris.beams.io/posts/git-commit/).
 
-
-
-
+Cuando un desarrollador utiliza un nuevo lenguaje, debe añadir una nueva entrada en esta sección, indicando el lenguaje
+añadido y la guía de estilo seguida.
 
