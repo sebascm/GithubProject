@@ -61,3 +61,11 @@ Se puede obtener más información en la página de [Chris Beams](https://chris.
 Cuando un desarrollador utiliza un nuevo lenguaje, debe añadir una nueva entrada en esta sección, indicando el lenguaje
 añadido y la guía de estilo seguida.
 
+## CI/CD
+
+El flujo de CI/CD definido se aplicará en cada una de las ramas de forma independiente. Sólo una vez que una rama ha
+superado todas las etapas de CI/CD que son pertinentes se puede fusionar con la rama `master`. El responsable de cada
+rama lo es también de desarrollar las pruebas para verificar las funcionalidades implementadas en esa rama.
+
+
+
