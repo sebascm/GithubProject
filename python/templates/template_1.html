@@ -1,0 +1,73 @@
+<html>
+  <head>
+    <!--Load the AJAX API-->
+    <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
+    <script type="text/javascript">
+
+      // Load the Visualization API and the required packages.
+      google.charts.load('current', {'packages':['corechart']});
+      google.charts.load("current", {'packages':["calendar"]});
+
+      // Set a callback to run when the Google Visualization API is loaded.
+      google.charts.setOnLoadCallback(drawChart);
+
+      // Callback that creates and populates a data table,
+      // instantiates the pie chart, passes in the data and
+      // draws it.
+      function drawChart() {
+        %(jscode)s
+        %(jscode2)s
+        %(jscode3)s
+        %(jscode4)s
+
+        // Set chart options
+        var options_pie = {'title':'Numero de commits',
+                       'width':400,
+                       'height':300};
+
+        var options_lines = {
+            title: 'Commits a lo largo del tiempo',
+            curveType: 'function',
+            lineWidth: 4,
+            intervals: { 'style':'line' },
+            legend: 'none'
+        };
+
+        var options_calendar = {
+            title: "Actividad del repositorio",
+            height: 350,
+        };
+
+        var options = {
+            title: "Proyectos con mas commits",
+            width: 600,
+            height: 400
+        };
+
+        // Instantiate and draw our chart, passing in some options.
+        var chart_pie = new google.visualization.PieChart(document.getElementById('chart_pie_div'));
+        chart_pie.draw(jscode_data, options_pie);
+
+        var chart_lines = new google.visualization.LineChart(document.getElementById('chart_line_div'));
+        chart_lines.draw(jscode2_data, options_lines);
+
+        var chart_cal = new google.visualization.Calendar(document.getElementById('chart_cal_div'));
+        chart_cal.draw(jscode3_data, options_calendar);
+
+        var chart_col = new google.visualization.ColumnChart(document.getElementById('chart_col_div'));
+        chart_col.draw(jscode4_data, options_calendar);
+      }
+    </script>
+  </head>
+
+  <body>
+    <!--Div that will hold the pie chart-->
+    <div id="chart_pie_div"></div>
+	<!--Div that will hold the line chart-->
+    <div id="chart_line_div"></div>
+    <!--Div that will hold the cal chart-->
+    <div id="chart_cal_div"></div>
+    <!--Div that will hold the col chart-->
+    <div id="chart_col_div"></div>
+  </body>
+</html>
