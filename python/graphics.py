@@ -15,6 +15,8 @@ def main():
                  "commits": ("number", "Number of user commits")}
     description4 = {"proy": ("string", "Project name"),
                  "commits": ("number", "Numero de commits")}
+    description5 = {"date": ("date", "Date"),
+                 "commits": ("number", "Number of user commits")}
 
     #Loading files
     with open('data/test.json') as json_file:
@@ -28,6 +30,9 @@ def main():
 
     with open('data/test6.json') as json_file4:
         data4 = json.load(json_file4)
+
+    with open('data/test7.json') as json_file5:
+        data5 = json.load(json_file5)    
 
     # Loading it into gviz_api.DataTable
     data_table = gviz_api.DataTable(description)
@@ -45,6 +50,12 @@ def main():
     data_table4 = gviz_api.DataTable(description4)
     data_table4.LoadData(data4)
 
+    for i in range(len(data5)):
+        data5[i]['date'] = datetime.datetime.strptime(data5[i]['date'],'%Y-%m-%d')
+
+    data_table5 = gviz_api.DataTable(description5)
+    data_table5.LoadData(data5)
+
     # Creating a JavaScript code string
     jscode = data_table.ToJSCode("jscode_data",
                                 columns_order=("user", "commits"))
@@ -57,6 +68,9 @@ def main():
 
     jscode4 = data_table4.ToJSCode("jscode4_data",
                                 columns_order=("proy", "commits"))
+
+    jscode5 = data_table5.ToJSCode("jscode5_data",
+                                columns_order=("date", "commits"))
 
     #json1 = data_table3.ToJSon(columns_order=("proy", "day", "commits"))
     #print json1

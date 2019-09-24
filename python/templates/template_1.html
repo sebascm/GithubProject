@@ -19,6 +19,7 @@
         %(jscode2)s
         %(jscode3)s
         %(jscode4)s
+        %(jscode5)s
 
         // Set chart options
         var options_pie = {'title':'Numero de commits',
@@ -38,10 +39,25 @@
             height: 350,
         };
 
-        var options = {
+        var options_col = {
             title: "Proyectos con mas commits",
             width: 600,
             height: 400
+        };
+
+        var options_trend = {
+            title: 'Actividad media en los repositorios',
+            hAxis: {title: 'Dia'},
+            vAxis: {title: 'Media de commits', minValue: 0},
+            legend: 'none',
+            crosshair: { trigger: 'both', orientation: 'both' },
+            trendlines: {
+                0: {
+                  type: 'polynomial',
+                  degree: 5,
+                  visibleInLegend: true,
+                }
+            }
         };
 
         // Instantiate and draw our chart, passing in some options.
@@ -55,7 +71,10 @@
         chart_cal.draw(jscode3_data, options_calendar);
 
         var chart_col = new google.visualization.ColumnChart(document.getElementById('chart_col_div'));
-        chart_col.draw(jscode4_data, options_calendar);
+        chart_col.draw(jscode4_data, options_col);
+
+        var chart_trend = new google.visualization.ScatterChart(document.getElementById('chart_trend_div'));
+        chart_trend.draw(jscode5_data, options_trend);
       }
     </script>
   </head>
@@ -69,5 +88,7 @@
     <div id="chart_cal_div"></div>
     <!--Div that will hold the col chart-->
     <div id="chart_col_div"></div>
+    <!--Div that will hold the trend chart-->
+    <div id="chart_trend_div"></div>
   </body>
 </html>
