@@ -22,3 +22,12 @@ dicha aprovación el responsable de la rama es el encargado de hacer el merge a 
 mediante [squash](https://www.devroom.io/2011/07/05/git-squash-your-latests-commits-into-one/) de _commits_ y eliminando
 la rama que ha sido fusionada. También debe ser eliminada la `Pull Request`.
 
+## Documentación
+
+La documentación se realizará siguiendo el [Markdown Github
+Flavored](https://help.github.com/en/articles/about-writing-and-formatting-on-github). El código estará distribuido en
+directorios dentro del repositorio, por lo que el **README**  del directorio raíz mostrará información de carácter
+general mientras que la documentación específica de cada parte se incluirá en un fichero **README**  dentro del
+directorio correspondiente. Debe ser breve, concisa e indicar mediante enlaces las referencias de dónde se ha obtenido
+la información o a la ampliación de la información presente (documentación de referencia de las APIs utilizadas).
+
