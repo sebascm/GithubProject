@@ -1,57 +1,56 @@
 version: 2
 jobs:
-  style_checker_and_static_analysis:
+  install:
     docker:
-      - image: circleci/python
-    steps:
-      - checkout # Hace pull del repositorio en el directorio actual
-      - run: sudo python -m pip install dlint
-      - run: python -m flake8 --select=DUO /path/to/source # Ejecuta flake8 con los parametros de dlint
-  build:
-    docker:
-      - image: circleci/python
+      - image: circleci/python:3.7.0
+    working_directory: ~/Project
     steps:
       - checkout
-      # Restaura la cache de dependencias si la "plantilla de la rama" o el requirements.txt no han cambaido desde la
-      # ultima ejecucion
-      - restore_cache:
-          key: deps1-{{ .Branch }}-{{ checksum "requirements.txt" }}
-      - run: # Instala y activa el entorno virtual python junto con las dependencias
-          command: |
-            python3 -m venv venv
-            . venv/bin/activate
-            pip install -r requirements.txt
-      - save_cache: # Guarda la cache de dependencias
-          key: deps1-{{ .Branch }}-{{ checksum "requirements.txt" }}
-          paths:
-            - "venv"
+      - run:
+          name: Actualizamos los paquetes a traves de apt
+          command: sudo apt-get update
+      - run:
+          name: Creamos el entorno virtual en la carpeta actual
+          command: python3 -m venv env
+      - run:
+          name: Anadimos el interprete del entorno virtual al PATH
+          command: export PATH=$PATH:$(pwd)/env/bin
       - persist_to_workspace:
-          # Se asigna el directorio actual al workspace para que este disponible para siguientes jobs
-          root: .
-          # Se añaden todos los subdirectorios y archivos
-          paths:
-            - '*'
-  unit_tests:
+        root: .
+        paths:
+          - GithubProject
+          - env
+
+
+  test-pep8:
     docker:
-      - image: circleci/python
+      - image: circleci/circleci/python:3.7.0
+    working_directory: ~/Project
     steps:
+      - checkout
       - attach_workspace:
-          # Se adquiere el workspace del job anterior
           at: .
       - run:
-          name: Ejecuta los tests unitarios
-          command: |
-            . venv/bin/activate
-            python -m unittest discover -s /path/to/tests
+          name: Test de estilo PEP8
+          command: echo Instalar checker de estilo y ejecutarlo
+
+  analisis-estatico:
+    docker:
+      - image: circleci/circleci/python:3.7.0
+    working_directory: ~/repo
+    steps:
+      - checkout
+      - attach_workspace:
+          at: .
+      - run:
+          name: Test
+
+  tests-unitarios:
 
 workflows:
   version: 2
-  stylecheck-build-test:
-    jobs:
-      - style_checker_and_static_analysis
-      - build:
-          requires:
-            - style_checker_and_static_analysis
-      - unit_tests:
-          requires:
-            - build
+  jobs:
+    - install
+    - test-pep8:
+        requires:
+          - install
