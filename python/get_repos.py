@@ -30,23 +30,25 @@ class Commits(Connection):
                 listCommits.append(commit.author.login)
     dictCommits = Counter(listCommits)
     listKeys = list(dictCommits.keys())
+    # Añadimos un usuario "Otros" para aquellos que realicen < 0.5% de commits
+    listKeys.append('Otros')
     listPercentage = []
     for item in dictCommits.values():
         percentage = 100 * float(item) / float(totalCommits)
         listPercentage.append(percentage)
 
     dictPercentages = {}
+    countPercentage = 0
     for listKeys, listPercentage in zip(listKeys, listPercentage):
-        dictPercentages[listKeys] = listPercentage
+        # Condición de que tengan más de un 0.5% de commits
+        if (listPercentage > 0.5):
+            dictPercentages[listKeys] = listPercentage
+        else:
+            # Porcentaje "Otros"
+            countPercentage = countPercentage + listPercentage
+    # Se añade ese porcentaje a "Otros"
+    dictPercentages['Otros'] = countPercentage
 
-    print(repo)
-    print(totalContributors)
-    print("###########################")
-    print(totalCommits)
-    print("###########################")
-    print(dictCommits)
-    print("###########################")
-    print(dictPercentages)
     with open('dataTotal.json', 'w', encoding='utf-8') as f:
         jsonFile = json.dump({"Nombre repositorio": repo,
                               "Commits totales": totalCommits,
