@@ -42,7 +42,7 @@ jobs:
           name: Ejecuta los tests unitarios
           command: |
             . venv/bin/activate
-            python -m unittest discover -s /path/to/tests
+            python -m pytest /path/to/tests
 
 workflows:
   version: 2
