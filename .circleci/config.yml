@@ -6,7 +6,7 @@ jobs:
     steps:
       - checkout # Hace pull del repositorio en el directorio actual
       - run: sudo python -m pip install dlint
-      - run: python -m flake8 --select=DUO /path/to/source # Ejecuta flake8 con los parametros de dlint
+      - run: python -m flake8 --select=DUO python # Ejecuta flake8 con los parametros de dlint
   build:
     docker:
       - image: circleci/python
@@ -43,7 +43,7 @@ jobs:
           command: |
             . venv/bin/activate
             pip install -r test-requirements.txt
-            python -m pytest /path/to/tests
+            python -m pytest python/tests/
 
 workflows:
   version: 2
