@@ -40,6 +40,8 @@ def main():
 
     data_aut = load_file('data/data-minishift.json')
     proy_aut = data_aut['Nombre repositorio']
+    comm_aut = data_aut['Commits totales']
+    user_aut = data_aut['Contribuidores totales']
 
 
     #Preparing data

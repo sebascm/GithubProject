@@ -69,13 +69,24 @@
           seriesType: 'bars',
           series: {5: {type: 'line'}}        };
 
-        var options_aut = {
+        var options_aut_col = {
             title: "Porcentaje de commits en el proyecto %(proy_aut)s",
             width: 1200,
             height: 500,
             legend: 'none',
-            hAxis: {title: 'Usuario'},
-            vAxis: {title: 'Porcentaje de commits', minValue: 0.5}
+            hAxis: {title: 'Usuario (Totales: %(user_aut)s)'},
+            vAxis: {title: 'Porcentaje de commits (Totales: %(comm_aut)s)', minValue: 0.5}
+        };
+
+        var options_aut_pie = {
+          title: 'Commits en el repositorio',
+          widht: 500,
+          height: 500,
+          legend: 'none',
+          pieSliceText: 'label',
+          slices: { 15: {offset: 0.3}, 
+                    2: {offset: 0.3},
+          },
         };
 
         // Instantiate and draw our chart, passing in some options.
@@ -100,8 +111,12 @@
         var chart_combo = new google.visualization.ComboChart(document.getElementById('chart_combo_div'));
         chart_combo.draw(jscode6_data, options_combo);
 
-        var chart_aut = new google.visualization.ColumnChart(document.getElementById('chart_aut_div'));
-        chart_aut.draw(jscode_aut_data, options_aut);
+        var chart_aut_col = new google.visualization.ColumnChart(document.getElementById('chart_aut_col_div'));
+        chart_aut_col.draw(jscode_aut_data, options_aut_col);
+
+        var chart_aut_pie = new google.visualization.PieChart(document.getElementById('chart_aut_pie_div'));
+        chart_aut_pie.draw(jscode_aut_data, options_aut_pie);
+
       }
     </script>
   </head>
@@ -121,6 +136,7 @@
     <!--Div that will hold the combo chart-->
     <div id="chart_combo_div"></div>
     <h1>Graficas con datos reales</h1>
-    <div id="chart_aut_div"></div>
+    <div id="chart_aut_col_div"></div>
+    <div id="chart_aut_pie_div"></div>
   </body>
 </html>
