@@ -1,9 +1,14 @@
 #!/usr/bin/python
 import json
+import os
 import gviz_api
 import datetime
 
 page_template = open("templates/template_1.html", "r").read()
+
+def load_file(file):
+    with open(file) as json_file:
+      return json.load(json_file)
 
 def main():
     #Creating schema
@@ -19,20 +24,11 @@ def main():
                  "commits": ("number", "Number of user commits")}
 
     #Loading files
-    with open('data/test.json') as json_file:
-        data = json.load(json_file)
-
-    with open('data/test2.json') as json_file2:
-        data2 = json.load(json_file2)
-
-    with open('data/test5.json') as json_file3:
-        data3 = json.load(json_file3)
-
-    with open('data/test6.json') as json_file4:
-        data4 = json.load(json_file4)
-
-    with open('data/test7.json') as json_file5:
-        data5 = json.load(json_file5)    
+    data = load_file('data/test.json')
+    data2 = load_file('data/test2.json')
+    data3 = load_file('data/test5.json')
+    data4 = load_file('data/test6.json')
+    data5 = load_file('data/test7.json')  
 
     # Loading it into gviz_api.DataTable
     data_table = gviz_api.DataTable(description)
@@ -78,7 +74,10 @@ def main():
     # Putting the JS code into the template
     pagina = page_template % vars()
 
-    f= open("test/prueba.html","w+")
+
+    if not os.path.isdir("generated"):
+        os.mkdir("generated") 
+    f= open("generated/prueba.html","w+")
     f.write(pagina)
     f.close() 
 
