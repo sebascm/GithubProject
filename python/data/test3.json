@@ -1,17 +1,4 @@
-[{ "proy": "proy1", "day":"9-sept", "commits":30 },
-    { "proy": "proy1", "day":"10-sept", "commits":11 },
-    { "proy": "proy1", "day":"11-sept", "commits":2 },
-    { "proy": "proy1", "day":"12-sept", "commits":14 },
-	{ "proy": "proy2", "day":"9-sept", "commits":30 },
-    { "proy": "proy2", "day":"10-sept", "commits":9 },
-    { "proy": "proy2", "day":"11-sept", "commits":23 },
-    { "proy": "proy2", "day":"12-sept", "commits":5 },
-	{ "proy": "proy3", "day":"9-sept", "commits":12 },
-    { "proy": "proy3", "day":"10-sept", "commits":8 },
-    { "proy": "proy3", "day":"11-sept", "commits":12 },
-    { "proy": "proy3", "day":"12-sept", "commits":1 },
-	{ "proy": "proy4", "day":"9-sept", "commits":3 },
-    { "proy": "proy4", "day":"10-sept", "commits":30 },
-    { "proy": "proy4", "day":"11-sept", "commits":1 },
-    { "proy": "proy4", "day":"12-sept", "commits":50 }
-]
+[{ "day":"9-sept", "proy1":30, "proy2":24, "proy3":5  },
+    { "day":"10-sept", "proy1":11, "proy2":2, "proy3":43 },
+    { "day":"11-sept", "proy1":29, "proy2":21, "proy3":30 },
+    { "day":"12-sept", "proy1":44, "proy2":3, "proy3":5 }]

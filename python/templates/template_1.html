@@ -20,6 +20,7 @@
         %(jscode3)s
         %(jscode4)s
         %(jscode5)s
+        %(jscode6)s
 
         // Set chart options
         var options_pie = {'title':'Numero de commits',
@@ -55,10 +56,17 @@
                 0: {
                   type: 'polynomial',
                   degree: 5,
-                  visibleInLegend: true,
+                  visibleInLegend: false,
                 }
             }
         };
+
+        var options_combo = {
+          title : 'Comparativa de commits',
+          vAxis: {title: 'Commits'},
+          hAxis: {title: 'Dias'},
+          seriesType: 'bars',
+          series: {5: {type: 'line'}}        };
 
         // Instantiate and draw our chart, passing in some options.
         var chart_pie = new google.visualization.PieChart(document.getElementById('chart_pie_div'));
@@ -75,6 +83,12 @@
 
         var chart_trend = new google.visualization.ScatterChart(document.getElementById('chart_trend_div'));
         chart_trend.draw(jscode5_data, options_trend);
+
+        var chart_trend = new google.visualization.ScatterChart(document.getElementById('chart_trend_div'));
+        chart_trend.draw(jscode5_data, options_trend);
+
+        var chart_combo = new google.visualization.ComboChart(document.getElementById('chart_combo_div'));
+        chart_combo.draw(jscode6_data, options_combo);
       }
     </script>
   </head>
@@ -90,5 +104,7 @@
     <div id="chart_col_div"></div>
     <!--Div that will hold the trend chart-->
     <div id="chart_trend_div"></div>
+    <!--Div that will hold the combo chart-->
+    <div id="chart_combo_div"></div>
   </body>
 </html>

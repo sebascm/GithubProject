@@ -22,6 +22,10 @@ def main():
                  "commits": ("number", "Numero de commits")}
     description5 = {"date": ("date", "Date"),
                  "commits": ("number", "Number of user commits")}
+    description6 = {"day": ("string", "Day"),
+                  "proy1": ("number", "Commits proyecto 1"),
+                  "proy2": ("number", "Commits proyecto 2"),
+                  "proy3": ("number", "Commits proyecto 3")}
 
     #Loading files
     data = load_file('data/test.json')
@@ -29,6 +33,27 @@ def main():
     data3 = load_file('data/test5.json')
     data4 = load_file('data/test6.json')
     data5 = load_file('data/test7.json')  
+    data6 = load_file('data/test3.json')
+
+    #Preparing data
+    for i in range(len(data3)):
+        data3[i]['date'] = datetime.datetime.strptime(data3[i]['date'],'%Y-%m-%d')
+
+    for i in range(len(data5)):
+        data5[i]['date'] = datetime.datetime.strptime(data5[i]['date'],'%Y-%m-%d')
+
+    ##dicc = [['dia'] + data6['proy'].keys()]
+    ##for key in data['proy'].keys():
+    ##    for i in range(len(data['proy'].get(key))):
+    ##        contiene = 0
+    ##        for j in range(len(dicc)):
+    ##            if data['proy'].get(key)[i]['day'] in dicc[j]:
+    ##                contiene = 1
+    ##        if contiene = 1:
+    ##
+    ##        else:
+    ##            dicc.append()
+
 
     # Loading it into gviz_api.DataTable
     data_table = gviz_api.DataTable(description)
@@ -37,20 +62,17 @@ def main():
     data_table2 = gviz_api.DataTable(description2)
     data_table2.LoadData(data2)
 
-    for i in range(len(data3)):
-        data3[i]['date'] = datetime.datetime.strptime(data3[i]['date'],'%Y-%m-%d')
-
     data_table3 = gviz_api.DataTable(description3)
     data_table3.LoadData(data3)
 
     data_table4 = gviz_api.DataTable(description4)
     data_table4.LoadData(data4)
 
-    for i in range(len(data5)):
-        data5[i]['date'] = datetime.datetime.strptime(data5[i]['date'],'%Y-%m-%d')
-
     data_table5 = gviz_api.DataTable(description5)
     data_table5.LoadData(data5)
+
+    data_table6 = gviz_api.DataTable(description6)
+    data_table6.LoadData(data6)
 
     # Creating a JavaScript code string
     jscode = data_table.ToJSCode("jscode_data",
@@ -68,8 +90,9 @@ def main():
     jscode5 = data_table5.ToJSCode("jscode5_data",
                                 columns_order=("date", "commits"))
 
-    #json1 = data_table3.ToJSon(columns_order=("proy", "day", "commits"))
-    #print json1
+    jscode6 = data_table6.ToJSCode("jscode6_data",
+                                columns_order=("day","proy1", "proy2", "proy3"), 
+                                order_by = "day")
 
     # Putting the JS code into the template
     pagina = page_template % vars()
