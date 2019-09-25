@@ -6,9 +6,19 @@ import datetime
 
 page_template = open("templates/template_1.html", "r").read()
 
-def load_file(file):
+def loadFile(file):
     with open(file) as json_file:
       return json.load(json_file)
+
+def parseDate(data):
+    for i in range(len(data)):
+        data[i]['date'] = datetime.datetime.strptime(data[i]['date'],'%Y-%m-%d')
+    return data
+
+def createAndLoadDataTable(description, data):
+    data_table = gviz_api.DataTable(description)
+    data_table.LoadData(data)
+    return data_table
 
 def main():
     #Creating schema
@@ -30,61 +40,31 @@ def main():
     description_aut = {"Autor": ("string", "Nombre del autor"),
                   "Porcentaje": ("number", "Porcentaje de commits en el repositorio")}
 
-    #Loading files
-    data = load_file('data/test.json')
-    data2 = load_file('data/test2.json')
-    data3 = load_file('data/test5.json')
-    data4 = load_file('data/test6.json')
-    data5 = load_file('data/test7.json')  
-    data6 = load_file('data/test3.json')
+    #Loading files and assigning variables
+    data = loadFile('data/test.json')
+    data2 = loadFile('data/test2.json')
+    data3 = loadFile('data/test5.json')
+    data4 = loadFile('data/test6.json')
+    data5 = loadFile('data/test7.json')  
+    data6 = loadFile('data/test3.json')
 
-    data_aut = load_file('data/data-minishift.json')
+    data_aut = loadFile('data/data-minishift.json')
     proy_aut = data_aut['Nombre repositorio']
     comm_aut = data_aut['Commits totales']
     user_aut = data_aut['Contribuidores totales']
 
-
     #Preparing data
-    for i in range(len(data3)):
-        data3[i]['date'] = datetime.datetime.strptime(data3[i]['date'],'%Y-%m-%d')
-
-    for i in range(len(data5)):
-        data5[i]['date'] = datetime.datetime.strptime(data5[i]['date'],'%Y-%m-%d')
-
-    ##dicc = [['dia'] + data6['proy'].keys()]
-    ##for key in data['proy'].keys():
-    ##    for i in range(len(data['proy'].get(key))):
-    ##        contiene = 0
-    ##        for j in range(len(dicc)):
-    ##            if data['proy'].get(key)[i]['day'] in dicc[j]:
-    ##                contiene = 1
-    ##        if contiene = 1:
-    ##
-    ##        else:
-    ##            dicc.append()
-
+    data3 = parseDate(data3)
+    data5 = parseDate(data5)
 
     # Loading it into gviz_api.DataTable
-    data_table = gviz_api.DataTable(description)
-    data_table.LoadData(data)
-
-    data_table2 = gviz_api.DataTable(description2)
-    data_table2.LoadData(data2)
-
-    data_table3 = gviz_api.DataTable(description3)
-    data_table3.LoadData(data3)
-
-    data_table4 = gviz_api.DataTable(description4)
-    data_table4.LoadData(data4)
-
-    data_table5 = gviz_api.DataTable(description5)
-    data_table5.LoadData(data5)
-
-    data_table6 = gviz_api.DataTable(description6)
-    data_table6.LoadData(data6)
-
-    data_table_aut = gviz_api.DataTable(description_aut)
-    data_table_aut.LoadData(data_aut['Commits'])
+    data_table = createAndLoadDataTable(description,data)
+    data_table2 = createAndLoadDataTable(description2,data2)
+    data_table3 = createAndLoadDataTable(description3,data3)
+    data_table4 = createAndLoadDataTable(description4,data4)
+    data_table5 = createAndLoadDataTable(description5,data5)
+    data_table6 = createAndLoadDataTable(description6,data6)
+    data_table_aut = createAndLoadDataTable(description_aut,data_aut['Commits'])
 
     # Creating a JavaScript code string
     jscode = data_table.ToJSCode("jscode_data",
