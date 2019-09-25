@@ -27,6 +27,9 @@ def main():
                   "proy2": ("number", "Commits proyecto 2"),
                   "proy3": ("number", "Commits proyecto 3")}
 
+    description_aut = {"Autor": ("string", "Nombre del autor"),
+                  "Porcentaje": ("number", "Porcentaje de commits en el repositorio")}
+
     #Loading files
     data = load_file('data/test.json')
     data2 = load_file('data/test2.json')
@@ -34,6 +37,10 @@ def main():
     data4 = load_file('data/test6.json')
     data5 = load_file('data/test7.json')  
     data6 = load_file('data/test3.json')
+
+    data_aut = load_file('data/data-minishift.json')
+    proy_aut = data_aut['Nombre repositorio']
+
 
     #Preparing data
     for i in range(len(data3)):
@@ -74,6 +81,9 @@ def main():
     data_table6 = gviz_api.DataTable(description6)
     data_table6.LoadData(data6)
 
+    data_table_aut = gviz_api.DataTable(description_aut)
+    data_table_aut.LoadData(data_aut['Commits'])
+
     # Creating a JavaScript code string
     jscode = data_table.ToJSCode("jscode_data",
                                 columns_order=("user", "commits"))
@@ -93,6 +103,10 @@ def main():
     jscode6 = data_table6.ToJSCode("jscode6_data",
                                 columns_order=("day","proy1", "proy2", "proy3"), 
                                 order_by = "day")
+
+    jscode_aut = data_table_aut.ToJSCode("jscode_aut_data",
+                                columns_order=("Autor","Porcentaje"), 
+                                order_by = "Porcentaje")
 
     # Putting the JS code into the template
     pagina = page_template % vars()

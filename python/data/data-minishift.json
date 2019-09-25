@@ -1,0 +1,355 @@
+{
+    "Nombre repositorio": "minishift/minishift",
+    "Commits totales": 1745,
+    "Contribuidores totales": 86,
+    "Commits": [
+        {
+            "Autor": "sleshchenko",
+            "Porcentaje": 0.5730659025787965
+        },
+        {
+            "Autor": "anjannath",
+            "Porcentaje": 4.871060171919771
+        },
+        {
+            "Autor": "minishift-bot",
+            "Porcentaje": 2.1203438395415475
+        },
+        {
+            "Autor": "robin-owen",
+            "Porcentaje": 1.146131805157593
+        },
+        {
+            "Autor": "danielhelfand",
+            "Porcentaje": 0.05730659025787966
+        },
+        {
+            "Autor": "garagatyi",
+            "Porcentaje": 0.05730659025787966
+        },
+        {
+            "Autor": "LalatenduMohanty",
+            "Porcentaje": 5.100286532951289
+        },
+        {
+            "Autor": "apupier",
+            "Porcentaje": 0.11461318051575932
+        },
+        {
+            "Autor": "l0rd",
+            "Porcentaje": 0.17191977077363896
+        },
+        {
+            "Autor": "jsliacan",
+            "Porcentaje": 0.05730659025787966
+        },
+        {
+            "Autor": "acdha",
+            "Porcentaje": 0.11461318051575932
+        },
+        {
+            "Autor": "tsedmik",
+            "Porcentaje": 0.22922636103151864
+        },
+        {
+            "Autor": "agajdosi",
+            "Porcentaje": 3.839541547277937
+        },
+        {
+            "Autor": "praveenkumar",
+            "Porcentaje": 14.555873925501432
+        },
+        {
+            "Autor": "gbraad",
+            "Porcentaje": 3.438395415472779
+        },
+        {
+            "Autor": "gastaldi",
+            "Porcentaje": 0.05730659025787966
+        },
+        {
+            "Autor": "coolbrg",
+            "Porcentaje": 6.991404011461318
+        },
+        {
+            "Autor": "liangxia",
+            "Porcentaje": 0.40114613180515757
+        },
+        {
+            "Autor": "amitkrout",
+            "Porcentaje": 1.3753581661891117
+        },
+        {
+            "Autor": "nikita-karatun",
+            "Porcentaje": 0.05730659025787966
+        },
+        {
+            "Autor": "rhnvrm",
+            "Porcentaje": 0.17191977077363896
+        },
+        {
+            "Autor": "dgolovin",
+            "Porcentaje": 0.05730659025787966
+        },
+        {
+            "Autor": "Sajfer",
+            "Porcentaje": 0.05730659025787966
+        },
+        {
+            "Autor": "sabre1041",
+            "Porcentaje": 0.05730659025787966
+        },
+        {
+            "Autor": "Vampouille",
+            "Porcentaje": 0.05730659025787966
+        },
+        {
+            "Autor": "geoand",
+            "Porcentaje": 0.05730659025787966
+        },
+        {
+            "Autor": "vorburger",
+            "Porcentaje": 0.05730659025787966
+        },
+        {
+            "Autor": "mik-dass",
+            "Porcentaje": 0.05730659025787966
+        },
+        {
+            "Autor": "claudio4j",
+            "Porcentaje": 0.05730659025787966
+        },
+        {
+            "Autor": "blomquisg",
+            "Porcentaje": 0.05730659025787966
+        },
+        {
+            "Autor": "jemacom",
+            "Porcentaje": 0.05730659025787966
+        },
+        {
+            "Autor": "svenstaro",
+            "Porcentaje": 0.40114613180515757
+        },
+        {
+            "Autor": "ymdatta",
+            "Porcentaje": 0.05730659025787966
+        },
+        {
+            "Autor": "piyush-garg",
+            "Porcentaje": 0.05730659025787966
+        },
+        {
+            "Autor": "klauern",
+            "Porcentaje": 0.05730659025787966
+        },
+        {
+            "Autor": "hferentschik",
+            "Porcentaje": 8.882521489971346
+        },
+        {
+            "Autor": "tylerauerbeck",
+            "Porcentaje": 0.11461318051575932
+        },
+        {
+            "Autor": "None",
+            "Porcentaje": 0.6303724928366762
+        },
+        {
+            "Autor": "MansM",
+            "Porcentaje": 0.05730659025787966
+        },
+        {
+            "Autor": "bhavin192",
+            "Porcentaje": 0.22922636103151864
+        },
+        {
+            "Autor": "karlnicholas",
+            "Porcentaje": 0.05730659025787966
+        },
+        {
+            "Autor": "syamgk",
+            "Porcentaje": 0.05730659025787966
+        },
+        {
+            "Autor": "ulyssessouza",
+            "Porcentaje": 0.17191977077363896
+        },
+        {
+            "Autor": "brian-avery",
+            "Porcentaje": 0.05730659025787966
+        },
+        {
+            "Autor": "athos-ribeiro",
+            "Porcentaje": 0.05730659025787966
+        },
+        {
+            "Autor": "jaseemabid",
+            "Porcentaje": 0.05730659025787966
+        },
+        {
+            "Autor": "gunnarmorling",
+            "Porcentaje": 0.05730659025787966
+        },
+        {
+            "Autor": "tylerkelly13",
+            "Porcentaje": 0.05730659025787966
+        },
+        {
+            "Autor": "surajnarwade",
+            "Porcentaje": 0.05730659025787966
+        },
+        {
+            "Autor": "thomasmckay",
+            "Porcentaje": 0.05730659025787966
+        },
+        {
+            "Autor": "karmab",
+            "Porcentaje": 0.05730659025787966
+        },
+        {
+            "Autor": "aditya-konarde",
+            "Porcentaje": 0.05730659025787966
+        },
+        {
+            "Autor": "lance",
+            "Porcentaje": 0.05730659025787966
+        },
+        {
+            "Autor": "thatdocslady",
+            "Porcentaje": 1.833810888252149
+        },
+        {
+            "Autor": "tvieira",
+            "Porcentaje": 0.05730659025787966
+        },
+        {
+            "Autor": "rkratky",
+            "Porcentaje": 0.11461318051575932
+        },
+        {
+            "Autor": "Preeticp",
+            "Porcentaje": 0.9742120343839542
+        },
+        {
+            "Autor": "dharmit",
+            "Porcentaje": 0.17191977077363896
+        },
+        {
+            "Autor": "nanomad",
+            "Porcentaje": 0.05730659025787966
+        },
+        {
+            "Autor": "quagliero",
+            "Porcentaje": 0.05730659025787966
+        },
+        {
+            "Autor": "caseyfw",
+            "Porcentaje": 0.05730659025787966
+        },
+        {
+            "Autor": "warmchang",
+            "Porcentaje": 0.22922636103151864
+        },
+        {
+            "Autor": "utherp0",
+            "Porcentaje": 0.05730659025787966
+        },
+        {
+            "Autor": "BrunoVernay",
+            "Porcentaje": 0.11461318051575932
+        },
+        {
+            "Autor": "tenfourty",
+            "Porcentaje": 0.05730659025787966
+        },
+        {
+            "Autor": "jimmidyson",
+            "Porcentaje": 12.148997134670488
+        },
+        {
+            "Autor": "r2d4",
+            "Porcentaje": 1.0315186246418337
+        },
+        {
+            "Autor": "aaron-prindle",
+            "Porcentaje": 2.4068767908309456
+        },
+        {
+            "Autor": "dlorenc",
+            "Porcentaje": 16.6189111747851
+        },
+        {
+            "Autor": "rawlingsj",
+            "Porcentaje": 0.17191977077363896
+        },
+        {
+            "Autor": "lburgazzoli",
+            "Porcentaje": 0.22922636103151864
+        },
+        {
+            "Autor": "chirino",
+            "Porcentaje": 0.17191977077363896
+        },
+        {
+            "Autor": "tsl0922",
+            "Porcentaje": 0.05730659025787966
+        },
+        {
+            "Autor": "ascheman",
+            "Porcentaje": 0.11461318051575932
+        },
+        {
+            "Autor": "jorgemoralespou",
+            "Porcentaje": 0.05730659025787966
+        },
+        {
+            "Autor": "brk3",
+            "Porcentaje": 0.05730659025787966
+        },
+        {
+            "Autor": "rhuss",
+            "Porcentaje": 0.05730659025787966
+        },
+        {
+            "Autor": "MHBauer",
+            "Porcentaje": 0.22922636103151864
+        },
+        {
+            "Autor": "luxas",
+            "Porcentaje": 4.2979942693409745
+        },
+        {
+            "Autor": "jstrachan",
+            "Porcentaje": 0.11461318051575932
+        },
+        {
+            "Autor": "stevesloka",
+            "Porcentaje": 0.05730659025787966
+        },
+        {
+            "Autor": "rdsubhas",
+            "Porcentaje": 0.05730659025787966
+        },
+        {
+            "Autor": "philips",
+            "Porcentaje": 0.17191977077363896
+        },
+        {
+            "Autor": "heckdevice",
+            "Porcentaje": 0.05730659025787966
+        },
+        {
+            "Autor": "ethernetdan",
+            "Porcentaje": 0.5157593123209169
+        },
+        {
+            "Autor": "eparis",
+            "Porcentaje": 0.05730659025787966
+        },
+        {
+            "Autor": "vishh",
+            "Porcentaje": 0.11461318051575932
+        }
+    ]
+}

@@ -21,6 +21,7 @@
         %(jscode4)s
         %(jscode5)s
         %(jscode6)s
+        %(jscode_aut)s
 
         // Set chart options
         var options_pie = {'title':'Numero de commits',
@@ -68,6 +69,15 @@
           seriesType: 'bars',
           series: {5: {type: 'line'}}        };
 
+        var options_aut = {
+            title: "Porcentaje de commits en el proyecto %(proy_aut)s",
+            width: 1200,
+            height: 500,
+            legend: 'none',
+            hAxis: {title: 'Usuario'},
+            vAxis: {title: 'Porcentaje de commits', minValue: 0.5}
+        };
+
         // Instantiate and draw our chart, passing in some options.
         var chart_pie = new google.visualization.PieChart(document.getElementById('chart_pie_div'));
         chart_pie.draw(jscode_data, options_pie);
@@ -89,11 +99,15 @@
 
         var chart_combo = new google.visualization.ComboChart(document.getElementById('chart_combo_div'));
         chart_combo.draw(jscode6_data, options_combo);
+
+        var chart_aut = new google.visualization.ColumnChart(document.getElementById('chart_aut_div'));
+        chart_aut.draw(jscode_aut_data, options_aut);
       }
     </script>
   </head>
 
   <body>
+    <h1>Pruebas con datos aleatorios</h1>
     <!--Div that will hold the pie chart-->
     <div id="chart_pie_div"></div>
 	<!--Div that will hold the line chart-->
@@ -106,5 +120,7 @@
     <div id="chart_trend_div"></div>
     <!--Div that will hold the combo chart-->
     <div id="chart_combo_div"></div>
+    <h1>Graficas con datos reales</h1>
+    <div id="chart_aut_div"></div>
   </body>
 </html>
