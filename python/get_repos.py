@@ -4,6 +4,7 @@ from collections import Counter
 
 import sys
 import json
+import jsonschema
 
 
 class Connection():
@@ -52,10 +53,14 @@ class Commits(Connection):
     with open('dataTotal.json', 'w', encoding='utf-8') as f:
         jsonFile = json.dump({"Nombre repositorio": repo,
                               "Commits totales": totalCommits,
-                              "Contribuidores totales": totalContributors},
-                             f, indent=4)
-
-    with open('dataCommits.json', 'w', encoding='utf-8') as f:
-        jsonFile = json.dump({"Commits": [{"Autor": key, "Porcentaje": value}
-                             for key, value in dictPercentages.items()]}, f,
+                              "Contribuidores totales": totalContributors,
+                              "Commits": [{"Autor": key, "Porcentaje": value}
+                                          for key, value in
+                                          dictPercentages.items()]}, f,
                              indent=4)
+    with open('commitsSchema.jschema') as json_file:
+        commitsSchema = json.load(json_file)
+    with open('dataTotal.json') as json_file:
+        jsonFile = json.load(json_file)
+
+    jsonschema.validate(jsonFile, commitsSchema)

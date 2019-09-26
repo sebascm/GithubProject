@@ -1,0 +1,81 @@
+{
+  "definitions": {},
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "$id": "http://example.com/root.json",
+  "type": "object",
+  "title": "The Root Schema",
+  "required": [
+    "Nombre repositorio",
+    "Commits totales",
+    "Contribuidores totales",
+    "Commits"
+  ],
+  "properties": {
+    "Nombre repositorio": {
+      "$id": "#/properties/Nombre repositorio",
+      "type": "string",
+      "title": "El nombre del repositorio",
+      "default": "",
+      "examples": [
+        "minishift/minishift"
+      ],
+      "pattern": "^(.*)$"
+    },
+    "Commits totales": {
+      "$id": "#/properties/Commits totales",
+      "type": "integer",
+      "title": "Los commits totales del repositorio",
+      "default": 0,
+      "examples": [
+        1745
+      ]
+    },
+    "Contribuidores totales": {
+      "$id": "#/properties/Contribuidores totales",
+      "type": "integer",
+      "title": "Los contribuidores totales del repositorio",
+      "default": 0,
+      "examples": [
+        86
+      ]
+    },
+    "Commits": {
+      "$id": "#/properties/Commits",
+      "type": "array",
+      "title": "The Commits Schema",
+      "items": {
+        "$id": "#/properties/Commits/items",
+        "type": "object",
+        "title": "Los commits individuales del repositorio",
+        "required": [
+          "Autor",
+          "Porcentaje"
+        ],
+        "properties": {
+          "Autor": {
+            "$id": "#/properties/Commits/items/properties/Autor",
+            "type": "string",
+            "title": "El autor del commit",
+            "default": "",
+            "examples": [
+              "sleshchenko"
+            ],
+            "pattern": "^(.*)$"
+          },
+          "Porcentaje": {
+            "$id": "#/properties/Commits/items/properties/Porcentaje",
+            "type": "number",
+            "title": "El porcentaje de commits del autor en el repositorio",
+            "default": 0.0,
+            "examples": [
+              0.5730659025787965
+            ]
+          }
+        }
+      }
+    }
+  }
+}
+
+
+
