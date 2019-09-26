@@ -22,6 +22,7 @@ def addUserPullRequestsStats(user, pull):
         auxDict['merged_pull_requests'] = 1
     else:
         auxDict['merged_pull_requests'] = 0
+    auxDict['changed_files'] = pull.changed_files
     
     return auxDict
 
@@ -32,6 +33,7 @@ def updateUserPullRequestsStats(user, pull, contributorStats):
         contributorStats['closed_pull_requests'] += 1
     if pull.is_merged():
         contributorStats['merged_pull_requests'] += 1
+    contributorStats['changed_files'] += pull.changed_files
     return contributorStats
 
 def addContributorsStats(pullsList):
@@ -54,6 +56,13 @@ def getMergedPulls(contributorsDict):
 
     return auxCount
 
+def getTotalFilesChanged(pullRequests):
+    auxCount = 0
+    for pullRequests in pullRequests:
+        auxCount += pullRequests.changed_files
+
+    return auxCount
+
 class Pulls(Connection):
     connection = Connection()
     g = connection.auth
@@ -72,15 +81,16 @@ class Pulls(Connection):
     contributorsDict = addContributorsStats(allPulls)
     
     mergedPullsCount = getMergedPulls(contributorsDict)
+    changedFilesCount = getTotalFilesChanged(allPulls)
 
     statsDict = {}
-    statsDict['totalPulls'] = totalPullsCount
-    statsDict['openPulls'] = openPullsCount
-    statsDict['closedPulls'] = closedPullsCount
-    statsDict['mergedPulls'] = mergedPullsCount
-    statsDict['closedAndMergedPercent'] = 100 * float(mergedPullsCount) / float(closedPullsCount)
-
-    statsDict['contributorsStats'] = contributorsDict
+    statsDict['total_pulls'] = totalPullsCount
+    statsDict['open_pulls'] = openPullsCount
+    statsDict['closed_pulls'] = closedPullsCount
+    statsDict['merged_pulls'] = mergedPullsCount
+    statsDict['closed_and_merged_percent'] = 100 * float(mergedPullsCount) / float(closedPullsCount)
+    statsDict['average_changed_files'] = float(changedFilesCount) / float(totalPullsCount)
+    statsDict['contributors_stats'] = contributorsDict
 
     with open('pullRequestsStats.json', 'w') as json_file:
         json.dump(statsDict, json_file, indent=4)
