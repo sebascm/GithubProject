@@ -47,6 +47,16 @@ def addContributorsStats(pullsList):
                 contributorsDict[pull.user.login] = addUserPullRequestsStats(pull.user, pull) 
         else:
             contributorsDict[pull.user.login] = updateUserPullRequestsStats(pull.user, pull, contributorsDict[pull.user.login])
+    for contributor in contributorsDict:
+        openPullRequests = contributorsDict[contributor]['open_pull_requests']
+        closedPullRequests = contributorsDict[contributor]['closed_pull_requests']
+        mergedPullRequests = contributorsDict[contributor]['merged_pull_requests']
+        changedFilesCount = contributorsDict[contributor]['changed_files']
+        totalPullRequests = openPullRequests + closedPullRequests
+        if closedPullRequests != 0:
+            contributorsDict[contributor]['closed_and_merged_percent'] = 100 * float(mergedPullRequests) / float(closedPullRequests)
+        contributorsDict[contributor]['average_changed_files'] = float(changedFilesCount) / float(totalPullRequests)
+    
     return contributorsDict
 
 def getMergedPulls(contributorsDict):
