@@ -47,6 +47,13 @@ def addContributorsStats(pullsList):
             contributorsDict[pull.user.login] = updateUserPullRequestsStats(pull.user, pull, contributorsDict[pull.user.login])
     return contributorsDict
 
+def getMergedPulls(contributorsDict):
+    auxCount = 0
+    for contributor in contributorsDict:
+        auxCount += contributorsDict[contributor]['merged_pull_requests']
+
+    return auxCount
+
 class Pulls(Connection):
     connection = Connection()
     g = connection.auth
@@ -67,7 +74,8 @@ class Pulls(Connection):
     statsDict = {}
     statsDict['totalPulls'] = totalPullsCount
     statsDict['openPulls'] = openPullsCount
-    statsDict['closedPull'] = closedPullsCount
+    statsDict['closedPulls'] = closedPullsCount
+    statsDict['mergedPulls'] = getMergedPulls(contributorsDict)
 
     statsDict['contributorsStats'] = contributorsDict
 
