@@ -1,0 +1,47 @@
+{
+    "total_pulls": 8,
+    "open_pulls": 5,
+    "closed_pulls": 3,
+    "merged_pulls": 2,
+    "closed_and_merged_percent": 66.66666666666667,
+    "average_changed_files": 7.0,
+    "contributors_stats": {
+        "Chusca": {
+            "open_pull_requests": 1,
+            "closed_pull_requests": 0,
+            "merged_pull_requests": 0,
+            "changed_files": 3,
+            "average_changed_files": 3.0
+        },
+        "franrua": {
+            "open_pull_requests": 0,
+            "closed_pull_requests": 2,
+            "merged_pull_requests": 2,
+            "changed_files": 3,
+            "closed_and_merged_percent": 100.0,
+            "average_changed_files": 1.5
+        },
+        "PabloGalegoC": {
+            "open_pull_requests": 2,
+            "closed_pull_requests": 0,
+            "merged_pull_requests": 0,
+            "changed_files": 15,
+            "average_changed_files": 7.5
+        },
+        "sebascm": {
+            "open_pull_requests": 1,
+            "closed_pull_requests": 1,
+            "merged_pull_requests": 0,
+            "changed_files": 5,
+            "closed_and_merged_percent": 0.0,
+            "average_changed_files": 2.5
+        },
+        "losete": {
+            "open_pull_requests": 1,
+            "closed_pull_requests": 0,
+            "merged_pull_requests": 0,
+            "changed_files": 30,
+            "average_changed_files": 30.0
+        }
+    }
+}
