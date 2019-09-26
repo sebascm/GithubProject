@@ -1,5 +1,5 @@
 # GithubProject
 
-#APIs utilizadas
-json
-gviz_api https://github.com/google/google-visualization-python (pip install gviz_api)
+Este repositorio contiene el código fuente del proyecto GitHubProject.
+
+GithubProject es un proyecto de código abierto para obtener estadísticas de proyectos alojados en GitHub y mostrarlas en gráficos.

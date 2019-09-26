@@ -8,6 +8,7 @@
       google.charts.load('current', {'packages':['corechart']});
       google.charts.load("current", {'packages':["calendar"]});
 
+
       // Set a callback to run when the Google Visualization API is loaded.
       google.charts.setOnLoadCallback(drawChart);
 
@@ -21,6 +22,7 @@
         %(jscode4)s
         %(jscode5)s
         %(jscode6)s
+        %(jscode7)s
         %(jscode_aut)s
 
         // Set chart options
@@ -55,19 +57,28 @@
             crosshair: { trigger: 'both', orientation: 'both' },
             trendlines: {
                 0: {
-                  type: 'polynomial',
-                  degree: 5,
-                  visibleInLegend: false,
+                    type: 'polynomial',
+                    degree: 5,
+                    visibleInLegend: false,
                 }
             }
         };
 
+        var options_sb = {
+            width: 600,
+            height: 400,
+            isStacked: true,
+            legend: { position: 'top', maxLines: 3 },
+            vAxis: {format: 'dd - mm - YYYY'}
+        };
+
         var options_combo = {
-          title : 'Comparativa de commits',
-          vAxis: {title: 'Commits'},
-          hAxis: {title: 'Dias'},
-          seriesType: 'bars',
-          series: {5: {type: 'line'}}        };
+            title : 'Comparativa de commits',
+            vAxis: {title: 'Commits'},
+            hAxis: {title: 'Dias'},
+            seriesType: 'bars',
+            series: {5: {type: 'line'}}
+        };
 
         var options_aut_col = {
             title: "Porcentaje de commits en el proyecto %(proy_aut)s",
@@ -79,14 +90,14 @@
         };
 
         var options_aut_pie = {
-          title: 'Commits en el repositorio',
-          widht: 500,
-          height: 500,
-          legend: 'none',
-          pieSliceText: 'label',
-          slices: { 15: {offset: 0.3}, 
-                    2: {offset: 0.3},
-          },
+            title: 'Commits en el repositorio (Totales: %(comm_aut)s)',
+            widht: 500,
+            height: 500,
+            legend: 'none',
+            pieSliceText: 'label',
+            slices: { 15: {offset: 0.3}, 
+                      2: {offset: 0.3},
+            },
         };
 
         // Instantiate and draw our chart, passing in some options.
@@ -110,6 +121,9 @@
 
         var chart_combo = new google.visualization.ComboChart(document.getElementById('chart_combo_div'));
         chart_combo.draw(jscode6_data, options_combo);
+
+        var chart_sb = new google.visualization.BarChart(document.getElementById('chart_sb_div'));
+        chart_sb.draw(jscode7_data, options_sb);
 
         var chart_aut_col = new google.visualization.ColumnChart(document.getElementById('chart_aut_col_div'));
         chart_aut_col.draw(jscode_aut_data, options_aut_col);
@@ -135,6 +149,8 @@
     <div id="chart_trend_div"></div>
     <!--Div that will hold the combo chart-->
     <div id="chart_combo_div"></div>
+    <!--Div that will hold the stacked bar chart-->
+    <div id="chart_sb_div"></div>
     <h1>Graficas con datos reales</h1>
     <div id="chart_aut_col_div"></div>
     <div id="chart_aut_pie_div"></div>

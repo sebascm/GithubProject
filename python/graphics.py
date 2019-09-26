@@ -36,6 +36,11 @@ def main():
                   "proy1": ("number", "Commits proyecto 1"),
                   "proy2": ("number", "Commits proyecto 2"),
                   "proy3": ("number", "Commits proyecto 3")}
+    description7 = {"date": ("date", "Date"),
+                  "proy1": ("number", "Commits proyecto 1"),
+                  "proy2": ("number", "Commits proyecto 2"),
+                  "proy3": ("number", "Commits proyecto 3")}
+
 
     description_aut = {"Autor": ("string", "Nombre del autor"),
                   "Porcentaje": ("number", "Porcentaje de commits en el repositorio")}
@@ -47,6 +52,7 @@ def main():
     data4 = loadFile('data/test6.json')
     data5 = loadFile('data/test7.json')  
     data6 = loadFile('data/test3.json')
+    data7 = loadFile('data/test12.json')
 
     data_aut = loadFile('data/data-minishift.json')
     proy_aut = data_aut['Nombre repositorio']
@@ -56,6 +62,7 @@ def main():
     #Preparing data
     data3 = parseDate(data3)
     data5 = parseDate(data5)
+    data7 = parseDate(data7)
 
     # Loading it into gviz_api.DataTable
     data_table = createAndLoadDataTable(description,data)
@@ -64,6 +71,7 @@ def main():
     data_table4 = createAndLoadDataTable(description4,data4)
     data_table5 = createAndLoadDataTable(description5,data5)
     data_table6 = createAndLoadDataTable(description6,data6)
+    data_table7 = createAndLoadDataTable(description7,data7)
     data_table_aut = createAndLoadDataTable(description_aut,data_aut['Commits'])
 
     # Creating a JavaScript code string
@@ -85,6 +93,10 @@ def main():
     jscode6 = data_table6.ToJSCode("jscode6_data",
                                 columns_order=("day","proy1", "proy2", "proy3"), 
                                 order_by = "day")
+
+    jscode7 = data_table7.ToJSCode("jscode7_data",
+                                columns_order=("date","proy1", "proy2", "proy3"), 
+                                order_by = "date")
 
     jscode_aut = data_table_aut.ToJSCode("jscode_aut_data",
                                 columns_order=("Autor","Porcentaje"), 
