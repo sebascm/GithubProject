@@ -8,13 +8,15 @@
     "Nombre repositorio",
     "Commits totales",
     "Contribuidores totales",
-    "Commits"
+    "Grafico",
+    "Ordenacion",
+    "Datos"
   ],
   "properties": {
     "Nombre repositorio": {
       "$id": "#/properties/Nombre repositorio",
       "type": "string",
-      "title": "El nombre del repositorio",
+      "title": "The Nombre repositorio Schema",
       "default": "",
       "examples": [
         "minishift/minishift"
@@ -24,7 +26,7 @@
     "Commits totales": {
       "$id": "#/properties/Commits totales",
       "type": "integer",
-      "title": "Los commits totales del repositorio",
+      "title": "The Commits totales Schema",
       "default": 0,
       "examples": [
         1745
@@ -33,29 +35,49 @@
     "Contribuidores totales": {
       "$id": "#/properties/Contribuidores totales",
       "type": "integer",
-      "title": "Los contribuidores totales del repositorio",
+      "title": "The Contribuidores totales Schema",
       "default": 0,
       "examples": [
         86
       ]
     },
-    "Commits": {
-      "$id": "#/properties/Commits",
+    "Grafico": {
+      "$id": "#/properties/Grafico",
+      "type": "string",
+      "title": "The Grafico Schema",
+      "default": "",
+      "examples": [
+        "PieChart"
+      ],
+      "pattern": "^(.*)$"
+    },
+    "Ordenacion": {
+      "$id": "#/properties/Ordenacion",
+      "type": "string",
+      "title": "The Ordenacion Schema",
+      "default": "",
+      "examples": [
+        "Porcentaje"
+      ],
+      "pattern": "^(.*)$"
+    },
+    "Datos": {
+      "$id": "#/properties/Datos",
       "type": "array",
-      "title": "The Commits Schema",
+      "title": "The Datos Schema",
       "items": {
-        "$id": "#/properties/Commits/items",
+        "$id": "#/properties/Datos/items",
         "type": "object",
-        "title": "Los commits individuales del repositorio",
+        "title": "The Items Schema",
         "required": [
           "Autor",
           "Porcentaje"
         ],
         "properties": {
           "Autor": {
-            "$id": "#/properties/Commits/items/properties/Autor",
+            "$id": "#/properties/Datos/items/properties/Autor",
             "type": "string",
-            "title": "El autor del commit",
+            "title": "The Autor Schema",
             "default": "",
             "examples": [
               "sleshchenko"
@@ -63,9 +85,9 @@
             "pattern": "^(.*)$"
           },
           "Porcentaje": {
-            "$id": "#/properties/Commits/items/properties/Porcentaje",
+            "$id": "#/properties/Datos/items/properties/Porcentaje",
             "type": "number",
-            "title": "El porcentaje de commits del autor en el repositorio",
+            "title": "The Porcentaje Schema",
             "default": 0.0,
             "examples": [
               0.5730659025787965
@@ -76,6 +98,3 @@
     }
   }
 }
-
-
-
