@@ -1,0 +1,2 @@
+{'day': ('string', 'Day'),
+                 'commits': ('number', 'Number of user commits')}

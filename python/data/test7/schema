@@ -1,0 +1,2 @@
+{'date': ('date', 'Date'),
+                 'commits': ('number', 'Number of user commits')}

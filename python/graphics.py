@@ -3,6 +3,7 @@ import json
 import os
 import gviz_api
 import datetime
+import ast
 
 page_template = open("templates/template_1.html", "r").read()
 
@@ -20,41 +21,37 @@ def createAndLoadDataTable(description, data):
     data_table.LoadData(data)
     return data_table
 
+def loadScheme(file):
+    with open(file, 'r') as f:
+        s = f.read()
+        return ast.literal_eval(s)
+
 def main():
     #Creating schema
-    description = {"user": ("string", "User name"),
-                 "commits": ("number", "Number of user commits")}
-    description2 = {"day": ("string", "Day"),
-                 "commits": ("number", "Number of user commits")}
-    description3 = {"date": ("date", "Date"),
-                 "commits": ("number", "Number of user commits")}
-    description4 = {"proy": ("string", "Project name"),
-                 "commits": ("number", "Numero de commits")}
-    description5 = {"date": ("date", "Date"),
-                 "commits": ("number", "Number of user commits")}
-    description6 = {"day": ("string", "Day"),
-                  "proy1": ("number", "Commits proyecto 1"),
-                  "proy2": ("number", "Commits proyecto 2"),
-                  "proy3": ("number", "Commits proyecto 3")}
-    description7 = {"date": ("date", "Date"),
-                  "proy1": ("number", "Commits proyecto 1"),
-                  "proy2": ("number", "Commits proyecto 2"),
-                  "proy3": ("number", "Commits proyecto 3")}
+    description = loadScheme('data/test/schema')
+    description2 = loadScheme('data/test2/schema')
+    description3 = loadScheme('data/test5/schema')
+    description4 = loadScheme('data/test6/schema')
+    description5 = loadScheme('data/test7/schema')
+    description6 = loadScheme('data/test3/schema')
+    description7 = loadScheme('data/test12/schema')
+    # description8 = { "inst": ("string", "Instancia (proyecto o usuario)"),
+    #              "Parent": ("string", "Instancia padre (puede ser proyecto o usuario)"),
+    #              "commits": ("number", "Numero de commits")}
 
-
-    description_aut = {"Autor": ("string", "Nombre del autor"),
-                  "Porcentaje": ("number", "Porcentaje de commits en el repositorio")}
+    description_aut = loadScheme('data/test_aut/schema')
 
     #Loading files and assigning variables
-    data = loadFile('data/test.json')
-    data2 = loadFile('data/test2.json')
-    data3 = loadFile('data/test5.json')
-    data4 = loadFile('data/test6.json')
-    data5 = loadFile('data/test7.json')  
-    data6 = loadFile('data/test3.json')
-    data7 = loadFile('data/test12.json')
+    data = loadFile('data/test/data.json')
+    data2 = loadFile('data/test2/data.json')
+    data3 = loadFile('data/test5/data.json')
+    data4 = loadFile('data/test6/data.json')
+    data5 = loadFile('data/test7/data.json')
+    data6 = loadFile('data/test3/data.json')
+    data7 = loadFile('data/test12/data.json')
+    #data8 = loadFile('data/test13.json')
 
-    data_aut = loadFile('data/data-minishift.json')
+    data_aut = loadFile('data/test_aut/data.json')
     proy_aut = data_aut['Nombre repositorio']
     comm_aut = data_aut['Commits totales']
     user_aut = data_aut['Contribuidores totales']
@@ -72,6 +69,7 @@ def main():
     data_table5 = createAndLoadDataTable(description5,data5)
     data_table6 = createAndLoadDataTable(description6,data6)
     data_table7 = createAndLoadDataTable(description7,data7)
+    #data_table8 = createAndLoadDataTable(description8,data8)
     data_table_aut = createAndLoadDataTable(description_aut,data_aut['Commits'])
 
     # Creating a JavaScript code string
@@ -97,6 +95,9 @@ def main():
     jscode7 = data_table7.ToJSCode("jscode7_data",
                                 columns_order=("date","proy1", "proy2", "proy3"), 
                                 order_by = "date")
+
+    #jscode8 = data_table8.ToJSCode("jscode8_data",
+    #                            columns_order=("inst","Parent", "commits"))
 
     jscode_aut = data_table_aut.ToJSCode("jscode_aut_data",
                                 columns_order=("Autor","Porcentaje"), 
