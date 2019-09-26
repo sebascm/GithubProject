@@ -71,11 +71,14 @@ class Pulls(Connection):
 
     contributorsDict = addContributorsStats(allPulls)
     
+    mergedPullsCount = getMergedPulls(contributorsDict)
+
     statsDict = {}
     statsDict['totalPulls'] = totalPullsCount
     statsDict['openPulls'] = openPullsCount
     statsDict['closedPulls'] = closedPullsCount
-    statsDict['mergedPulls'] = getMergedPulls(contributorsDict)
+    statsDict['mergedPulls'] = mergedPullsCount
+    statsDict['closedAndMergedPercent'] = 100 * float(mergedPullsCount) / float(closedPullsCount)
 
     statsDict['contributorsStats'] = contributorsDict
 
