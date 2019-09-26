@@ -27,7 +27,39 @@ def loadScheme(file):
         return ast.literal_eval(s)
 
 def main():
+    rootdir = os.path.join(os.getcwd(), "data/")
+
+    for subdir, dirs, files in os.walk(rootdir):
+        description = None
+        data = None
+        for file in files:
+            archivo = os.path.join(subdir, file)
+            if file == 'schema':
+                description = loadScheme(archivo)
+            else: 
+                data = loadFile(archivo)
+                if 'date' in data:
+                    data = parseDate(data)
+        if data is not None:
+            data_table = createAndLoadDataTable(description,data['Datos'])
+            grafico = str(data['Grafico'])
+            jscode = None
+            if 'Ordenacion' in data:
+                jscode = data_table.ToJSCode("jscode_data",
+                                columns_order=(description.keys()),
+                                order_by = str(data['Ordenacion']))
+            else:
+                jscode = data_table.ToJSCode("jscode_data",
+                                columns_order=(description.keys()))
+            pagina = page_template % vars()
+            if not os.path.isdir("generated"):
+                os.mkdir("generated")
+            f= open("generated/prueba.html","w+")
+            f.write(pagina)
+            f.close() 
+
     #Creating schema
+    '''
     description = loadScheme('data/test/schema')
     description2 = loadScheme('data/test2/schema')
     description3 = loadScheme('data/test5/schema')
@@ -70,7 +102,7 @@ def main():
     data_table6 = createAndLoadDataTable(description6,data6)
     data_table7 = createAndLoadDataTable(description7,data7)
     #data_table8 = createAndLoadDataTable(description8,data8)
-    data_table_aut = createAndLoadDataTable(description_aut,data_aut['Commits'])
+    data_table_aut = createAndLoadDataTable(description_aut,data_aut['CommitList'])
 
     # Creating a JavaScript code string
     jscode = data_table.ToJSCode("jscode_data",
@@ -112,6 +144,6 @@ def main():
     f= open("generated/prueba.html","w+")
     f.write(pagina)
     f.close() 
-
+    '''
 if __name__ == "__main__":
     main()

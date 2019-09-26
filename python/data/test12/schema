@@ -1,4 +1,0 @@
-{'date': ('date', 'Date'),
-                  'proy1': ('number', 'Commits proyecto 1'),
-                  'proy2': ('number', 'Commits proyecto 2'),
-                  'proy3': ('number', 'Commits proyecto 3')}

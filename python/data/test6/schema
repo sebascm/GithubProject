@@ -1,2 +1,0 @@
-{'proy': ('string', 'Project name'),
-                 'commits': ('number', 'Numero de commits')}

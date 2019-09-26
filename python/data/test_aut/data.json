@@ -2,7 +2,9 @@
     "Nombre repositorio": "minishift/minishift",
     "Commits totales": 1745,
     "Contribuidores totales": 86,
-    "Commits": [
+    "Grafico": "ColumnChart",
+    "Ordenacion": "Porcentaje",
+    "Datos": [
         {
             "Autor": "sleshchenko",
             "Porcentaje": 0.5730659025787965
