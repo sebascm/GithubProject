@@ -44,7 +44,7 @@
             height: 350,
         };
 
-        var ColumnChart_options = {
+        var ColumnChart = {
             title: "Usuarios con mas commits",
             width: 1200,
             height: 500
@@ -101,8 +101,8 @@
 
         // Instantiate and draw our chart, passing in some options.
         
-        var chart_col = new google.visualization.ColumnChart(document.getElementById('ColumnChart_div'));
-        chart_col.draw(jscode_data, ColumnChart_options);
+        var chart_col = new google.visualization.%(grafico)s(document.getElementById(grafico.Grafico.concat('_div')));
+        chart_col.draw(jscode_data, %(grafico)s);
 
         //Aqui esta lo que hay que arreglar
         //var chart_div = grafico.Grafico.concat('_div');
@@ -139,7 +139,6 @@
   </head>
 
   <body>
-    <div id="chart_col_div"></div>
     <div id="ColumnChart_div"></div>
     <!--h1>Pruebas con datos aleatorios</h1>
     <div id="chart_pie_div"></div>
