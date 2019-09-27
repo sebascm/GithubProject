@@ -53,11 +53,12 @@ def main():
         if data is not None:
             data_table = createAndLoadDataTable(description, data['Datos'])
             grafico = str(data['Grafico'])
-            divs = divs + 'var iDiv = document.createElement(\'div\'); ' + '\n' \
-                + 'iDiv.id = \'' + grafico + '_div\';' + '\n' + \
+            divs = divs + 'var iDiv = document.createElement(\'div\'); ' \
+                + '\n' + 'iDiv.id = \'' + grafico + '_div\';' + '\n' + \
                 'document.getElementsByTagName(\'body\')[0].appendChild(iDiv);'
-            ejecucion = ejecucion + '\n' + 'var chart_' + grafico + '= new google.visualization.' + \
-                grafico + '(document.getElementById(\'' + grafico + '_div\'));'
+            ejecucion = ejecucion + '\n' + 'var chart_' + grafico + \
+                '= new google.visualization.' + grafico + \
+                '(document.getElementById(\'' + grafico + '_div\'));'
             opciones = opciones + '\n' + 'chart_' + grafico + \
                 '.draw(jscode_data,' + grafico + '_options);'
             if 'Ordenacion' in data:
