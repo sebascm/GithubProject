@@ -14,6 +14,56 @@ jobs:
       - checkout
       - run: sudo python -m pip install dlint
       - run: python -m flake8 --select=DUO python/ # Ejecuta flake8 con los parametros de dlint
+  build:
+    docker:
+      - image: circleci/python
+    steps:
+      - checkout
+      # Restaura la cache de dependencias si la "plantilla de la rama" o el requirements.txt no han cambaido desde la
+      # ultima ejecucion
+      - restore_cache:
+          key: deps1-{{ .Branch }}-{{ checksum ".circleci/requirements.txt" }}
+      - run: # Instala y activa el entorno virtual python junto con las dependencias
+          command: |
+            python3 -m venv venv
+            . venv/bin/activate
+            pip install -r .circleci/requirements.txt
+      - save_cache: # Guarda la cache de dependencias
+          key: deps1-{{ .Branch }}-{{ checksum ".circleci/requirements.txt" }}
+          paths:
+            - "venv"
+      - persist_to_workspace:
+          # Se asigna el directorio actual al workspace para que este disponible para siguientes jobs
+          root: .
+          # Se añaden todos los subdirectorios y archivos
+          paths:
+            - '*'
+  unit_tests:
+    docker:
+      - image: circleci/python
+    steps:
+      - attach_workspace:
+          # Se adquiere el workspace del job anterior
+          at: .
+      - run:
+          name: Ejecuta los tests unitarios
+          command: |
+            . venv/bin/activate
+            pip install -r .circleci/test-requirements.txt
+            python -m pytest python/tests/unit/
+
+  integration_tests:
+    docker:
+      - image: circleci/python
+    steps:
+      - attach_workspace:
+          at: .
+      - run:
+          name: Ejecuta los tests de integracion
+          command: |
+            . venv/bin/activate
+            pip install -r .circleci/test-requirements.txt
+            python -m pytest python/tests/integration/
 
 workflows:
   version: 2
@@ -21,3 +71,13 @@ workflows:
     jobs:
       - style_checker
       - static_analysis
+      - build:
+          requires:
+            - style_checker
+            - static_analysis
+      - unit_tests:
+          requires:
+            - build
+      - integration_tests:
+          requires:
+            - build
