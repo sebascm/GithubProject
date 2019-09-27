@@ -22,14 +22,14 @@ jobs:
       # Restaura la cache de dependencias si la "plantilla de la rama" o el requirements.txt no han cambaido desde la
       # ultima ejecucion
       - restore_cache:
-          key: deps1-{{ .Branch }}-{{ checksum "requirements.txt" }}
+          key: deps1-{{ .Branch }}-{{ checksum ".circleci/requirements.txt" }}
       - run: # Instala y activa el entorno virtual python junto con las dependencias
           command: |
             python3 -m venv venv
             . venv/bin/activate
             pip install -r .circleci/requirements.txt
       - save_cache: # Guarda la cache de dependencias
-          key: deps1-{{ .Branch }}-{{ checksum "requirements.txt" }}
+          key: deps1-{{ .Branch }}-{{ checksum ".circleci/requirements.txt" }}
           paths:
             - "venv"
       - persist_to_workspace:
@@ -50,18 +50,33 @@ jobs:
           command: |
             . venv/bin/activate
             pip install -r .circleci/test-requirements.txt
-            python -m pytest python/tests/
+            python -m pytest python/tests/unit/
+
+  integration_tests:
+    docker:
+      - image: circleci/python
+    steps:
+      - attach_workspace:
+          at: .
+      - run:
+          name: Ejecuta los tests de integracion
+          command: |
+            . venv/bin/activate
+            python -m pytest python/tests/integration/
 
 workflows:
   version: 2
   stylecheck-build-test:
     jobs:
-     # - style_checker
+      - style_checker
       - static_analysis
       - build:
           requires:
-           # - style_checker
+            - style_checker
             - static_analysis
       - unit_tests:
+          requires:
+            - build
+      - integration_tests:
           requires:
             - build
