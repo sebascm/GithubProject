@@ -37,6 +37,7 @@ def main():
     ejecucion = ''
     opciones = ''
     divs = ''
+    contador = 0
     rootdir = os.path.join(os.getcwd(), "data/")
 
     for subdir, dirs, files in os.walk(rootdir):
@@ -52,24 +53,25 @@ def main():
                     data = parseDate(data)
         if data is not None:
             data_table = createAndLoadDataTable(description, data['Datos'])
-            grafico = str(data['Grafico'])
+            grafico = str(data['Grafico']) + '_' + str(contador)
             divs = divs + 'var iDiv = document.createElement(\'div\'); ' \
                 + '\n' + 'iDiv.id = \'' + grafico + '_div\';' + '\n' + \
                 'document.getElementsByTagName(\'body\')[0].appendChild(iDiv);'
             ejecucion = ejecucion + '\n' + 'var chart_' + grafico + \
-                '= new google.visualization.' + grafico + \
+                '= new google.visualization.' + str(data['Grafico']) + \
                 '(document.getElementById(\'' + grafico + '_div\'));'
             opciones = opciones + '\n' + 'chart_' + grafico + \
-                '.draw(jscode_data,' + grafico + '_options);'
+                '.draw(jscode_data' + str(contador) + ',' + str(data['Grafico']) + '_options);'
             if 'Ordenacion' in data:
                 jscode = jscode + '\n' + data_table.ToJSCode(
-                    "jscode_data", columns_order=(
+                    "jscode_data" + str(contador), columns_order=(
                         description.keys()), order_by=str(
                         data['Ordenacion']))
             else:
                 jscode = jscode + '\n' + data_table.ToJSCode(
-                    "jscode_data", columns_order=(
+                    "jscode_data" + str(contador), columns_order=(
                         description.keys()))
+        contador += 1
 
     pagina = page_template % vars()
     if not os.path.isdir("generated"):
