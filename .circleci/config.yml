@@ -17,7 +17,7 @@ jobs:
   build:
     docker:
       - image: circleci/python
-        working_directory: ~/.circleci
+        working_directory: .circleci
     steps:
       - checkout
       - run: pwd
@@ -44,7 +44,7 @@ jobs:
   unit_tests:
     docker:
       - image: circleci/python
-        working_directory: ~/circleci
+        working_directory: .circleci
     steps:
       - attach_workspace:
           # Se adquiere el workspace del job anterior
