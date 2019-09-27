@@ -1,0 +1,91 @@
+{
+    "Nombre repositorio": "minishift/minishift",
+    "Commits totales": 1745,
+    "Contribuidores totales": 86,
+    "Commits": [
+        {
+            "Autor": "sleshchenko",
+            "Porcentaje": 0.5730659025787965
+        },
+        {
+            "Autor": "anjannath",
+            "Porcentaje": 4.871060171919771
+        },
+        {
+            "Autor": "minishift-bot",
+            "Porcentaje": 2.1203438395415475
+        },
+        {
+            "Autor": "robin-owen",
+            "Porcentaje": 1.146131805157593
+        },
+        {
+            "Autor": "LalatenduMohanty",
+            "Porcentaje": 5.100286532951289
+        },
+        {
+            "Autor": "agajdosi",
+            "Porcentaje": 3.839541547277937
+        },
+        {
+            "Autor": "praveenkumar",
+            "Porcentaje": 14.555873925501432
+        },
+        {
+            "Autor": "gbraad",
+            "Porcentaje": 3.438395415472779
+        },
+        {
+            "Autor": "coolbrg",
+            "Porcentaje": 6.991404011461318
+        },
+        {
+            "Autor": "amitkrout",
+            "Porcentaje": 1.3753581661891117
+        },
+        {
+            "Autor": "hferentschik",
+            "Porcentaje": 8.882521489971346
+        },
+        {
+            "Autor": "None",
+            "Porcentaje": 0.6303724928366762
+        },
+        {
+            "Autor": "thatdocslady",
+            "Porcentaje": 1.833810888252149
+        },
+        {
+            "Autor": "Preeticp",
+            "Porcentaje": 0.9742120343839542
+        },
+        {
+            "Autor": "jimmidyson",
+            "Porcentaje": 12.148997134670488
+        },
+        {
+            "Autor": "r2d4",
+            "Porcentaje": 1.0315186246418337
+        },
+        {
+            "Autor": "aaron-prindle",
+            "Porcentaje": 2.4068767908309456
+        },
+        {
+            "Autor": "dlorenc",
+            "Porcentaje": 16.6189111747851
+        },
+        {
+            "Autor": "luxas",
+            "Porcentaje": 4.2979942693409745
+        },
+        {
+            "Autor": "ethernetdan",
+            "Porcentaje": 0.5157593123209169
+        },
+        {
+            "Autor": "Otros",
+            "Porcentaje": 6.647564469914037
+        }
+    ]
+}
