@@ -17,21 +17,14 @@
       // draws it.
       function drawChart() {
         %(jscode)s
-        /* (jscode2)s
-        (jscode3)s
-        (jscode4)s
-        (jscode5)s
-        (jscode6)s
-        (jscode7)s
-        (jscode8)s
-        (jscode_aut)s*/
+        
         var grafico = {'Grafico':'%(grafico)s'};
         // Set chart options
-        var options_PieChart = {'title':'Numero de commits',
+        var PieChart_options = {'title':'Numero de commits',
                        'width':400,
                        'height':300};
 
-        var options_LineChart = {
+        var LineChart_options = {
             title: 'Commits a lo largo del tiempo',
             curveType: 'function',
             lineWidth: 4,
@@ -39,18 +32,18 @@
             legend: 'none'
         };
 
-        var options_Calendar = {
+        var Calendar_options = {
             title: "Actividad del repositorio",
             height: 350,
         };
 
-        var ColumnChart = {
+        var ColumnChart_options = {
             title: "Usuarios con mas commits",
             width: 1200,
             height: 500
         };
 
-        var options_ScatterChart = {
+        var ScatterChart_options = {
             title: 'Actividad media en los repositorios',
             hAxis: {title: 'Dia'},
             vAxis: {title: 'Media de commits', minValue: 0},
@@ -65,7 +58,7 @@
             }
         };
 
-        var options_BarChart = {
+        var BarChart_options = {
             width: 600,
             height: 400,
             isStacked: true,
@@ -73,7 +66,7 @@
             vAxis: {format: 'dd - mm - YYYY'}
         };
 
-        var options_ComboChart = {
+        var ComboChart_options = {
             title : 'Comparativa de commits',
             vAxis: {title: 'Commits'},
             hAxis: {title: 'Dias'},
@@ -99,40 +92,9 @@
             vAxis: {title: 'Porcentaje de commits (Totales: (comm_aut)s)', minValue: 0.5}
         };*/
 
-        // Instantiate and draw our chart, passing in some options.
         
-        var chart_col = new google.visualization.%(grafico)s(document.getElementById(grafico.Grafico.concat('_div')));
-        chart_col.draw(jscode_data, %(grafico)s);
-
-        //Aqui esta lo que hay que arreglar
-        //var chart_div = grafico.Grafico.concat('_div');
-        //var chart_options = grafico.Grafico.concat('_options');
-        //var chart = new google.visualization.%(grafico)s(document.getElementById(chart_div));
-        //chart_col.draw(jscode_data, ColumnChart_options);
-
-        /*var chart_lines = new google.visualization.LineChart(document.getElementById('chart_line_div'));
-        chart_lines.draw(jscode2_data, options_lines);
-
-        var chart_cal = new google.visualization.Calendar(document.getElementById('chart_cal_div'));
-        chart_cal.draw(jscode3_data, options_calendar);
-
-        var chart_col = new google.visualization.ColumnChart(document.getElementById('ColumnChart_div'));
-        chart_col.draw(jscode4_data, options_col);
-
-        var chart_trend = new google.visualization.ScatterChart(document.getElementById('chart_trend_div'));
-        chart_trend.draw(jscode5_data, options_trend);
-
-        var chart_combo = new google.visualization.ComboChart(document.getElementById('chart_combo_div'));
-        chart_combo.draw(jscode6_data, options_combo);
-
-        var chart_sb = new google.visualization.BarChart(document.getElementById('chart_sb_div'));
-        chart_sb.draw(jscode7_data, options_sb);
-
-        var chart_aut_col = new google.visualization.ColumnChart(document.getElementById('chart_aut_col_div'));
-        chart_aut_col.draw(jscode_aut_data, options_aut_col);
-
-        var chart_aut_pie = new google.visualization.PieChart(document.getElementById('chart_aut_pie_div'));
-        chart_aut_pie.draw(jscode_aut_data, options_aut_pie);*/
+        %(ejecucion)s
+        %(opciones)s
 
       }
     </script>
