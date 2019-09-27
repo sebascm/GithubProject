@@ -1,0 +1,100 @@
+{
+  "definitions": {},
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "$id": "http://example.com/root.json",
+  "type": "object",
+  "title": "The Root Schema",
+  "required": [
+    "Nombre repositorio",
+    "Commits totales",
+    "Contribuidores totales",
+    "Grafico",
+    "Ordenacion",
+    "Datos"
+  ],
+  "properties": {
+    "Nombre repositorio": {
+      "$id": "#/properties/Nombre repositorio",
+      "type": "string",
+      "title": "The Nombre repositorio Schema",
+      "default": "",
+      "examples": [
+        "minishift/minishift"
+      ],
+      "pattern": "^(.*)$"
+    },
+    "Commits totales": {
+      "$id": "#/properties/Commits totales",
+      "type": "integer",
+      "title": "The Commits totales Schema",
+      "default": 0,
+      "examples": [
+        1745
+      ]
+    },
+    "Contribuidores totales": {
+      "$id": "#/properties/Contribuidores totales",
+      "type": "integer",
+      "title": "The Contribuidores totales Schema",
+      "default": 0,
+      "examples": [
+        86
+      ]
+    },
+    "Grafico": {
+      "$id": "#/properties/Grafico",
+      "type": "string",
+      "title": "The Grafico Schema",
+      "default": "",
+      "examples": [
+        "PieChart"
+      ],
+      "pattern": "^(.*)$"
+    },
+    "Ordenacion": {
+      "$id": "#/properties/Ordenacion",
+      "type": "string",
+      "title": "The Ordenacion Schema",
+      "default": "",
+      "examples": [
+        "Porcentaje"
+      ],
+      "pattern": "^(.*)$"
+    },
+    "Datos": {
+      "$id": "#/properties/Datos",
+      "type": "array",
+      "title": "The Datos Schema",
+      "items": {
+        "$id": "#/properties/Datos/items",
+        "type": "object",
+        "title": "The Items Schema",
+        "required": [
+          "Autor",
+          "Porcentaje"
+        ],
+        "properties": {
+          "Autor": {
+            "$id": "#/properties/Datos/items/properties/Autor",
+            "type": "string",
+            "title": "The Autor Schema",
+            "default": "",
+            "examples": [
+              "sleshchenko"
+            ],
+            "pattern": "^(.*)$"
+          },
+          "Porcentaje": {
+            "$id": "#/properties/Datos/items/properties/Porcentaje",
+            "type": "number",
+            "title": "The Porcentaje Schema",
+            "default": 0.0,
+            "examples": [
+              0.5730659025787965
+            ]
+          }
+        }
+      }
+    }
+  }
+}
