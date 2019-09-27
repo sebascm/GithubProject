@@ -17,12 +17,12 @@
       // draws it.
       function drawChart() {
         %(jscode)s
-        
+
         var grafico = {'Grafico':'%(grafico)s'};
         // Set chart options
-        var PieChart_options = {'title':'Numero de commits',
-                       'width':400,
-                       'height':300};
+        var PieChart_options = {'title':'Porcentaje de commits',
+                       'width':700,
+                       'height':600};
 
         var LineChart_options = {
             title: 'Commits a lo largo del tiempo',
@@ -92,7 +92,7 @@
             vAxis: {title: 'Porcentaje de commits (Totales: (comm_aut)s)', minValue: 0.5}
         };*/
 
-        
+        %(divs)s
         %(ejecucion)s
         %(opciones)s
 
@@ -101,19 +101,5 @@
   </head>
 
   <body>
-    <div id="ColumnChart_div"></div>
-    <!--h1>Pruebas con datos aleatorios</h1>
-    <div id="chart_pie_div"></div>
-    <div id="chart_line_div"></div>
-    <div id="chart_cal_div"></div>
-    <div id="chart_col_div"></div>
-    <div id="chart_trend_div"></div>
-    <div id="chart_combo_div"></div>
-    <div id="chart_sb_div"></div-->
-    <!--Div that will hold the treemap chart-->
-    <!--div id="chart_treemap_div"></div-->
-    <!--h1>Graficas con datos reales</h1>
-    <div id="chart_aut_col_div"></div>
-    <div id="chart_aut_pie_div"></div-->
   </body>
 </html>
