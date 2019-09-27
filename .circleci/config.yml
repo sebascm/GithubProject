@@ -21,7 +21,7 @@ jobs:
     steps:
       - checkout
       - run: pwd
-      - run: ls
+      - run: ls -la
       # Restaura la cache de dependencias si la "plantilla de la rama" o el requirements.txt no han cambaido desde la
       # ultima ejecucion
       - restore_cache:
