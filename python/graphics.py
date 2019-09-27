@@ -61,7 +61,8 @@ def main():
                 '= new google.visualization.' + str(data['Grafico']) + \
                 '(document.getElementById(\'' + grafico + '_div\'));'
             opciones = opciones + '\n' + 'chart_' + grafico + \
-                '.draw(jscode_data' + str(contador) + ',' + str(data['Grafico']) + '_options);'
+                '.draw(jscode_data' + str(contador) + ',' + \
+                str(data['Grafico']) + '_options);'
             if 'Ordenacion' in data:
                 jscode = jscode + '\n' + data_table.ToJSCode(
                     "jscode_data" + str(contador), columns_order=(
