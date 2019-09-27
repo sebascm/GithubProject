@@ -20,6 +20,7 @@ jobs:
         working_directory: ~/.circleci
     steps:
       - checkout
+      - - run: pwd
       # Restaura la cache de dependencias si la "plantilla de la rama" o el requirements.txt no han cambaido desde la
       # ultima ejecucion
       - restore_cache:
