@@ -17,6 +17,7 @@ jobs:
   build:
     docker:
       - image: circleci/python
+        working_directory: ~/.circleci
     steps:
       - checkout
       # Restaura la cache de dependencias si la "plantilla de la rama" o el requirements.txt no han cambaido desde la
@@ -41,6 +42,7 @@ jobs:
   unit_tests:
     docker:
       - image: circleci/python
+        working_directory: ~/circleci
     steps:
       - attach_workspace:
           # Se adquiere el workspace del job anterior
