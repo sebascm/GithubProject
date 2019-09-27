@@ -11,7 +11,7 @@ import jsonschema
 class Connection():
     def __init__(self):
         self.token = sys.argv[1]
-        self.repo = sys.argv[2]
+        self.repoName = sys.argv[2]
         self.auth = Github(self.token)
 
 
@@ -71,8 +71,8 @@ def getLoginCommiter(commitList):
     return listCommits
 
 
-def createJson(data):
-    with open('dataTotal.json', 'w', encoding='utf-8') as f:
+def createJson(fileName, data):
+    with open(fileName + '.json', 'w', encoding='utf-8') as f:
         json.dump(data, f, indent=4)
 
 
@@ -86,29 +86,141 @@ def validateJson():
     jsonschema.validate(jsonFile, commitsSchema)
 
 
-class Commits(Connection):
-    connection = Connection()
-    g = connection.auth
-    repo = connection.repo
-    tipoGrafico = "PieChart"
-    ordenacion = "Porcentaje"
-    try:
-        totalCommits = g.get_repo(repo).get_commits().totalCount
-        commits = g.get_repo(repo).get_commits()
-        totalContributors = g.get_repo(repo).get_contributors().totalCount
-        listCommits = getLoginCommiter(commits)
-        listPercentage, listKeys = calculatePercentage(listCommits,
-                                                       totalCommits)
-        dictPercentage = setPercentage(listKeys, listPercentage)
-        data = createRepresentation(repo, totalCommits, totalContributors,
-                                    tipoGrafico, ordenacion, dictPercentage)
-        createJson(data)
-    except GithubException:
-        print("No se puede acceder al repositorio")
+class Commits():
+
+    def __init__(self, repo, repoName):
+        self.repo = repo
+        self.repoName = repoName
+        self.grafico = "PieChart"
+        self.orden = "Porcentaje"
+
+    def getData(self):
+        try:
+            totalCommits = self.repo.get_commits().totalCount
+            commits = self.repo.get_commits()
+            contributors = self.repo.get_contributors().totalCount
+            listCommits = getLoginCommiter(commits)
+            listPercentage, listKeys = calculatePercentage(listCommits,
+                                                           totalCommits)
+            percentage = setPercentage(listKeys, listPercentage)
+            data = createRepresentation(self.repoName, totalCommits,
+                                        contributors, self.grafico,
+                                        self.orden, percentage)
+            return data
+        except GithubException:
+            print("No se puede acceder al repositorio")
+
+
+def addUserPullRequestsStats(user, pull):
+    auxDict = {}
+    if pull.state == "open":
+        auxDict['open_pull_requests'] = 1
+        auxDict['closed_pull_requests'] = 0
+    else:
+        auxDict['open_pull_requests'] = 0
+        auxDict['closed_pull_requests'] = 1
+    if pull.is_merged():
+        auxDict['merged_pull_requests'] = 1
+    else:
+        auxDict['merged_pull_requests'] = 0
+    auxDict['changed_files'] = pull.changed_files
+
+    return auxDict
+
+
+def updateUserPullRequestsStats(pull, contributorStats):
+    if pull.state == "open":
+        contributorStats['open_pull_requests'] += 1
+    else:
+        contributorStats['closed_pull_requests'] += 1
+    if pull.is_merged():
+        contributorStats['merged_pull_requests'] += 1
+    contributorStats['changed_files'] += pull.changed_files
+    return contributorStats
+
+
+def addContributorsStats(pullsList):
+    contributors = {}
+
+    for pull in pullsList:
+        login = pull.user.login
+        if login not in contributors:
+            if (pull.user is None or login is None):
+                # Si el usuario está inactivo, el login del autor es None
+                contributors['None'] = 'None'
+            else:
+                contributors[login] = addUserPullRequestsStats(login, pull)
+        else:
+            stats = contributors[login]
+            contributors[login] = updateUserPullRequestsStats(pull, stats)
+
+    for user in contributors:
+        openPR = contributors[user]['open_pull_requests']
+        closedPR = contributors[user]['closed_pull_requests']
+        mergedPR = contributors[user]['merged_pull_requests']
+        changedFiles = contributors[user]['changed_files']
+        totalPR = openPR + closedPR
+
+        if closedPR != 0:
+            contributors[user]['merged_percent'] = 100 * mergedPR / closedPR
+
+        contributors[user]['average_changed_files'] = changedFiles / totalPR
+
+    return contributors
+
+
+def getMergedPulls(contributorsDict):
+    auxCount = 0
+    for contributor in contributorsDict:
+        auxCount += contributorsDict[contributor]['merged_pull_requests']
+
+    return auxCount
+
+
+def getTotalFilesChanged(pullRequests):
+    auxCount = 0
+    for pullRequests in pullRequests:
+        auxCount += pullRequests.changed_files
+
+    return auxCount
+
+
+class PullRequests():
+
+    def __init__(self, repo):
+        self.openPulls = repo.get_pulls(state="open").totalCount
+        self.closedPulls = repo.get_pulls(state="close").totalCount
+        self.allPulls = repo.get_pulls(state="all")
+        self.totalPulls = self.allPulls.totalCount
+        self.contributors = repo.get_contributors()
+
+    def getData(self):
+        contributorsDict = addContributorsStats(self.allPulls)
+        mergedPulls = getMergedPulls(contributorsDict)
+        changedFiles = getTotalFilesChanged(self.allPulls)
+
+        statsDict = {}
+        statsDict['total_pulls'] = self.totalPulls
+        statsDict['open_pulls'] = self.openPulls
+        statsDict['closed_pulls'] = self.closedPulls
+        statsDict['merged_pulls'] = mergedPulls
+        statsDict['merged_percent'] = 100 * mergedPulls / self.closedPulls
+        statsDict['average_changed_files'] = changedFiles / self.totalPulls
+        statsDict['contributors_stats'] = contributorsDict
+
+        return statsDict
 
 
 def main():
-    Commits()
+    connection = Connection()
+    g = connection.auth
+    repo = g.get_repo(connection.repoName)
+
+    commitsData = Commits(repo, connection.repoName).getData()
+    createJson("commitsData", commitsData)
+
+    pullRequestsData = PullRequests(repo).getData()
+    createJson("pullRequestsData", pullRequestsData)
 
 
 if __name__ == '__main__':
