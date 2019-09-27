@@ -58,11 +58,11 @@ workflows:
   version: 2
   stylecheck-build-test:
     jobs:
-      - style_checker
+     # - style_checker
       - static_analysis
       - build:
           requires:
-            - style_checker
+           # - style_checker
             - static_analysis
       - unit_tests:
           requires:
