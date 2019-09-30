@@ -8,10 +8,9 @@ jobs:
       - run: python -m flake8 python/ # Ejecuta flake8 con los parametros de dlint
   static_analysis:
     docker:
-      - image: circleci/python
+      - image: jpgc77/dlint:latest
     steps:
       - checkout
-      - run: sudo python -m pip install dlint
       - run: python -m flake8 --select=DUO python/ # Ejecuta flake8 con los parametros de dlint
   build:
     docker:
