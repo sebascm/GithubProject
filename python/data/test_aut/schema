@@ -1,0 +1,2 @@
+{'Autor': ('string', 'Nombre del autor'),
+'Porcentaje': ('number', 'Porcentaje de commits en el repositorio')}

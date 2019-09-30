@@ -1,1 +1,5 @@
 .vscode/
+generated/
+**/.Rhistory
+*.pyc
+**/__pychache__
