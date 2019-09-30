@@ -48,7 +48,6 @@ jobs:
           command: |
             . venv/bin/activate
             python -m pytest python/tests/unit/
-
   integration_tests:
     docker:
       - image: jpgc77/pytest:latest
@@ -74,6 +73,25 @@ workflows:
       - unit_tests:
           requires:
             - build
+      - integration_tests:
+          requires:
+            - build
+  master-schechuled-test:
+    triggers:
+      - schedule:
+          # Lanza tests de integración contra master cada domingo a las 00:00
+          cron: "0 0 * * 0"
+          filters:
+            branches:
+              only:
+                - master
+    jobs:
+      - style_checker
+      - static_analysis
+      - build:
+          requires:
+            - style_checker
+            - static_analysis
       - integration_tests:
           requires:
             - build
