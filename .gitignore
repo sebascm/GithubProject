@@ -1,0 +1,4 @@
+generated/
+**/.Rhistory
+*.pyc
+**/__pychache__
