@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 # Librerías adicionales
 - [gviz_api](https://github.com/google/google-visualization-python) 
 - [PyGitHub](https://pygithub.readthedocs.io/en/latest/introduction.html)
@@ -8,3 +9,17 @@ Coge un archivo .json en local, inserta su contenido en forma de tabla en un htm
 
 # Get_Commits
 Scripts para obtener los datos de repositorios en GitHub y representarlos
+=======
+# GithubProject
+
+Este repositorio contiene el código fuente del proyecto GitHubProject.
+
+GithubProject es un proyecto de código abierto para obtener estadísticas de proyectos alojados en GitHub y mostrarlas en gráficos.
+
+## Get_Commits
+Scripts para obtener los datos de repositorios en GitHub y representarlos
+
+### Librerías adicionales
+[PyGitHub](https://pygithub.readthedocs.io/en/latest/reference.html)
+[JsonSchema](https://python-jsonschema.readthedocs.io/en/stable/)
+>>>>>>> test/weekly
