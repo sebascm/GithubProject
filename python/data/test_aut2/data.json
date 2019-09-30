@@ -4,6 +4,7 @@
     "Contribuidores totales": 86,
     "Grafico": "PieChart",
     "Ordenacion": "Porcentaje",
+    "Tipo": "Autores",
     "Datos": [
         {
             "Autor": "sleshchenko",

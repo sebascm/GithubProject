@@ -18,6 +18,16 @@ class Test(unittest.TestCase):
         result2 = graphics.loadScheme(os.path.join(rootdir, 'schema2'))
         self.assertEqual(result2, schema2)
 
+    def setJScode():
+        jscode = ''
+        data = os.path.join(os.getcwd(), "tests/data/test1/data.json")
+        description = os.path.join(os.getcwd(), "tests/data/test1/schema")
+        contador = 0
+        data_table = graphics.createAndLoadDataTable(
+            description, data['Datos'])
+        jscode = graphics.setJScode(
+            jscode, data, data_table, contador, description)
+
 
 if __name__ == "__main__":
     unittest.main()

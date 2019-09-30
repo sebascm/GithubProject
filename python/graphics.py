@@ -32,6 +32,19 @@ def loadScheme(file):
         return ast.literal_eval(s)
 
 
+def setJScode(jscode, data, data_table, contador, description):
+    if 'Ordenacion' in data:
+        jscode = jscode + '\n' + data_table.ToJSCode(
+            "jscode_data" + str(contador), columns_order=(
+                description.keys()), order_by=str(
+                data['Ordenacion']))
+    else:
+        jscode = jscode + '\n' + data_table.ToJSCode(
+            "jscode_data" + str(contador), columns_order=(
+                description.keys()))
+    return jscode
+
+
 def main():
     jscode = ''
     ejecucion = ''
@@ -45,12 +58,12 @@ def main():
         description = None
         for file in files:
             archivo = os.path.join(subdir, file)
-            if file == 'schema':
-                description = loadScheme(archivo)
-            else:
+            if file == 'data.json':
                 data = loadFile(archivo)
                 if 'date' in data:
                     data = parseDate(data)
+                description = loadScheme(os.path.join(
+                    rootdir, 'schemas/' + str(data['Tipo'])))
         if data is not None:
             data_table = createAndLoadDataTable(description, data['Datos'])
             grafico = str(data['Grafico']) + '_' + str(contador)
@@ -63,15 +76,7 @@ def main():
             opciones = opciones + '\n' + 'chart_' + grafico + \
                 '.draw(jscode_data' + str(contador) + ',' + \
                 str(data['Grafico']) + '_options);'
-            if 'Ordenacion' in data:
-                jscode = jscode + '\n' + data_table.ToJSCode(
-                    "jscode_data" + str(contador), columns_order=(
-                        description.keys()), order_by=str(
-                        data['Ordenacion']))
-            else:
-                jscode = jscode + '\n' + data_table.ToJSCode(
-                    "jscode_data" + str(contador), columns_order=(
-                        description.keys()))
+            jscode = setJScode(jscode, data, data_table, contador, description)
         contador += 1
 
     pagina = page_template % vars()
