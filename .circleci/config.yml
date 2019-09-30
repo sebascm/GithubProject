@@ -38,7 +38,7 @@ jobs:
             - '*'
   unit_tests:
     docker:
-      - image: circleci/python
+      - image: jpgc77/pytest:latest
     steps:
       - attach_workspace:
           # Se adquiere el workspace del job anterior
@@ -47,12 +47,11 @@ jobs:
           name: Ejecuta los tests unitarios
           command: |
             . venv/bin/activate
-            pip install -r .circleci/test-requirements.txt
             python -m pytest python/tests/unit/
 
   integration_tests:
     docker:
-      - image: circleci/python
+      - image: jpgc77/pytest:latest
     steps:
       - attach_workspace:
           at: .
@@ -60,7 +59,6 @@ jobs:
           name: Ejecuta los tests de integracion
           command: |
             . venv/bin/activate
-            pip install -r .circleci/test-requirements.txt
             python -m pytest python/tests/integration/
 
 workflows:
